@@ -1,0 +1,19 @@
+{% extends 'diary/base.html' %}
+
+{% block content %}
+<table class="table">
+    <tr>
+        <th>日付</th>
+        <td>{{ day.date }}</td>
+    </tr>
+    <tr>
+        <th>タイトル</th>
+        <td>{{ day.title }}</td>
+    </tr>
+    <tr>
+        <th>本文</th>
+        <td>{{ day.text | linebreaksbr | urlize }}</td> 
+        <!-- 本文内の改行を反映、URLをリンク化 -->
+    </tr>
+</table>
+{% endblock %}
