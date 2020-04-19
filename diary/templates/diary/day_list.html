@@ -7,19 +7,28 @@
         <tr>
             <th>タイトル</th>
             <th>日付</th>
-            <th></th>
-            <th></th>
+            <th>#</th>
+            <th>#</th>
         </tr>
     </thead>
     <tbody>
         {% for day in day_list %}
         <tr>
-            <td><a href="{% url 'diary:detail' day.pk %}">{{ day.title }}</a></td>
+            <td><a href="{% url 'diary:detail' day.pk %}">{{ day.title }}</td>
             <td>{{ day.date }}</td>
-            <td><a href="{% url 'diary:update' day.pk %}">更新</a></td>
-            <td><a href="{% url 'diary:delete' day.pk %}">削除</a></td>
+            <td>
+                {% if user.is_superuser %}
+                    <a href="{% url 'diary:update' day.pk %}" target="_blank">更新</a>
+                {% endif %}
+            </td>
+            <td>
+                {% if user.is_superuser %}
+                    <a href="{% url 'diary:delete' day.pk %}" target="_blank">削除</a>
+                {% endif %}
+            </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+
 {% endblock %}
